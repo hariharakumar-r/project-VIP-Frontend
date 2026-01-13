@@ -1,0 +1,153 @@
+/**
+ * Validation Status Component Styles
+ */
+
+.validation-status {
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.validation-status.loading {
+  background-color: #f0f8ff;
+  border: 1px solid #b0d4f1;
+  color: #1e40af;
+}
+
+.validation-status.valid {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.validation-status.invalid {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+}
+
+.validation-status.error {
+  background-color: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #b91c1c;
+}
+
+.status-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-icon {
+  font-size: 16px;
+}
+
+.status-text {
+  font-weight: 500;
+}
+
+.status-score {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.status-details {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.validation-section {
+  margin-bottom: 16px;
+}
+
+.validation-section:last-child {
+  margin-bottom: 0;
+}
+
+.validation-section h4 {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+.validation-section ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.validation-section li {
+  padding: 2px 0;
+  font-size: 13px;
+}
+
+.issue-error {
+  color: #dc2626;
+}
+
+.issue-warning {
+  color: #d97706;
+}
+
+/**
+ * Math Renderer Component Styles
+ */
+
+.math-renderer {
+  display: inline-block;
+  font-family: 'KaTeX_Main', 'Times New Roman', serif;
+}
+
+.math-renderer.loading {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.math-renderer.error {
+  color: #dc2626;
+  background-color: #fef2f2;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-family: monospace;
+}
+
+.math-renderer.fallback {
+  font-family: monospace;
+  background-color: #f9fafb;
+  padding: 2px 4px;
+  border-radius: 2px;
+  border: 1px solid #e5e7eb;
+}
+
+.math-renderer.success {
+  /* KaTeX will handle the styling */
+}
+
+/**
+ * Development/Debug Styles
+ */
+
+.validation-debug {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  max-width: 300px;
+  z-index: 9999;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .validation-debug {
+    position: relative;
+    top: auto;
+    right: auto;
+    max-width: none;
+    margin: 10px;
+  }
+}
