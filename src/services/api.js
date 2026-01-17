@@ -25,16 +25,33 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
+    console.error('API Error:', {
+      url: error.config?.url,
+      method: error.config?.method,
+      status: error.response?.status,
+      message: error.message,
+      data: error.response?.data
+    });
+    
     // Enhanced error handling
     if (error.code === 'NETWORK_ERROR' || error.code === 'ERR_NETWORK') {
       console.error('Network error - check if backend is running on http://localhost:3000');
       return Promise.reject(new Error('Network connection failed. Please check if the server is running on http://localhost:3000'));
     }
     
+    // Don't auto-redirect on 401 - let components handle it
     if (error.response?.status === 401) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("role");
-      window.location.href = "/login";
+      console.warn('401 Unauthorized - Token may be expired');
+      // Only redirect if we're not already on login page
+      if (!window.location.pathname.includes('/login')) {
+        console.log('Redirecting to login due to 401');
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        // Use setTimeout to prevent immediate redirect during API calls
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 100);
+      }
     }
     
     // Log CORS errors specifically

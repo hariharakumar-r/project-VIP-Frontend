@@ -65,7 +65,7 @@ export default function App() {
 
 function PublicLayout({ children }) {
   return (
-    <div className="grid-layout">
+    <div className="grid-layout min-h-screen bg-gradient-to-r from-[#1F1C18] to-[#8E0E00]">
       <Navbar />
       <main className="grid-main">{children}</main>
       <Footer />

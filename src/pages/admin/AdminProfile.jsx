@@ -35,25 +35,25 @@ export default function AdminProfile() {
     }
   };
 
-  if (loading) return <div className="text-center py-8">Loading profile...</div>;
+  if (loading) return <div className="text-center py-8 text-gray-300">Loading profile...</div>;
 
   return (
     <div className="max-w-2xl">
-      <h2 className="text-2xl font-bold mb-6">Admin Profile</h2>
-      <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg mb-6 flex items-center gap-3">
-        <Shield className="text-yellow-600" size={24} />
-        <p className="text-yellow-800">You have Super Admin privileges</p>
+      <h2 className="text-2xl font-bold mb-6 text-white">Admin Profile</h2>
+      <div className="bg-red-900/20 border border-red-700 p-4 rounded-lg mb-6 flex items-center gap-3">
+        <Shield className="text-red-400" size={24} />
+        <p className="text-red-300">You have Super Admin privileges</p>
       </div>
-      <form onSubmit={handleSave} className="bg-white p-6 rounded-lg shadow space-y-4">
+      <form onSubmit={handleSave} className="bg-black p-6 rounded-lg shadow space-y-4 border border-gray-700">
         <div>
-          <label className="block text-sm font-medium mb-2">Name</label>
-          <input value={profile.name || ""} onChange={(e) => setProfile({ ...profile, name: e.target.value })} className="w-full p-3 border rounded-lg" />
+          <label className="block text-sm font-medium mb-2 text-gray-300">Name</label>
+          <input value={profile.name || ""} onChange={(e) => setProfile({ ...profile, name: e.target.value })} className="w-full p-3 border border-gray-600 rounded-lg bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-red-600" />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-2">Email</label>
-          <input value={profile.email || ""} onChange={(e) => setProfile({ ...profile, email: e.target.value })} className="w-full p-3 border rounded-lg" type="email" />
+          <label className="block text-sm font-medium mb-2 text-gray-300">Email</label>
+          <input value={profile.email || ""} onChange={(e) => setProfile({ ...profile, email: e.target.value })} className="w-full p-3 border border-gray-600 rounded-lg bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-red-600" type="email" />
         </div>
-        <button type="submit" disabled={saving} className="flex items-center gap-2 bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 disabled:opacity-50">
+        <button type="submit" disabled={saving} className="flex items-center gap-2 bg-red-700 text-white px-6 py-3 rounded-lg hover:bg-red-800 disabled:opacity-50">
           <Save size={20} />{saving ? "Saving..." : "Save Profile"}
         </button>
       </form>

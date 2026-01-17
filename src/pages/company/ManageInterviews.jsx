@@ -78,15 +78,15 @@ export default function ManageInterviews() {
   const getStatusIcon = (status) => {
     switch (status) {
       case "SCHEDULED":
-        return <Clock className="w-4 h-4 text-blue-500" />;
+        return <Clock className="w-4 h-4 text-blue-400" />;
       case "STARTED":
-        return <Video className="w-4 h-4 text-green-500" />;
+        return <Video className="w-4 h-4 text-green-400" />;
       case "COMPLETED":
-        return <CheckCircle className="w-4 h-4 text-green-600" />;
+        return <CheckCircle className="w-4 h-4 text-green-500" />;
       case "CANCELLED":
-        return <XCircle className="w-4 h-4 text-red-500" />;
+        return <XCircle className="w-4 h-4 text-red-400" />;
       case "NO_SHOW":
-        return <AlertCircle className="w-4 h-4 text-orange-500" />;
+        return <AlertCircle className="w-4 h-4 text-orange-400" />;
       default:
         return <Clock className="w-4 h-4 text-gray-500" />;
     }
@@ -95,17 +95,17 @@ export default function ManageInterviews() {
   const getStatusColor = (status) => {
     switch (status) {
       case "SCHEDULED":
-        return "bg-blue-100 text-blue-800";
+        return "bg-blue-900 text-blue-300";
       case "STARTED":
-        return "bg-green-100 text-green-800";
+        return "bg-green-900 text-green-300";
       case "COMPLETED":
-        return "bg-green-100 text-green-800";
+        return "bg-green-900 text-green-300";
       case "CANCELLED":
-        return "bg-red-100 text-red-800";
+        return "bg-red-900 text-red-300";
       case "NO_SHOW":
-        return "bg-orange-100 text-orange-800";
+        return "bg-orange-900 text-orange-300";
       default:
-        return "bg-gray-100 text-gray-800";
+        return "bg-gray-800 text-gray-300";
     }
   };
 
@@ -128,13 +128,13 @@ export default function ManageInterviews() {
   return (
     <div className="max-w-6xl">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold mb-2">Manage Interviews</h2>
-        <p className="text-gray-600">View and manage all your scheduled interviews</p>
+        <h2 className="text-2xl font-bold mb-2 text-white">Manage Interviews</h2>
+        <p className="text-gray-400">View and manage all your scheduled interviews</p>
       </div>
 
       {/* Filter Tabs */}
       <div className="mb-6">
-        <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg w-fit">
+        <div className="flex space-x-1 bg-gray-900 p-1 rounded-lg w-fit border border-gray-700">
           {["ALL", "SCHEDULED", "COMPLETED", "CANCELLED"].map((status) => (
             <button
               key={status}
@@ -144,8 +144,8 @@ export default function ManageInterviews() {
               }}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 filter === status
-                  ? "bg-white text-blue-600 shadow-sm"
-                  : "text-gray-600 hover:text-gray-900"
+                  ? "bg-red-700 text-white shadow-sm"
+                  : "text-gray-400 hover:text-gray-300"
               }`}
             >
               {status === "ALL" ? "All Interviews" : status.charAt(0) + status.slice(1).toLowerCase()}
@@ -156,9 +156,9 @@ export default function ManageInterviews() {
 
       {/* Interviews List */}
       {interviews.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-lg shadow">
-          <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No interviews found</h3>
+        <div className="text-center py-12 bg-black rounded-lg shadow border border-gray-700">
+          <Calendar className="w-12 h-12 text-gray-600 mx-auto mb-4" />
+          <h3 className="text-lg font-medium text-gray-300 mb-2">No interviews found</h3>
           <p className="text-gray-500">
             {filter === "ALL" 
               ? "You haven't scheduled any interviews yet." 
@@ -172,11 +172,11 @@ export default function ManageInterviews() {
             const upcoming = isUpcoming(interview.scheduledAt);
             
             return (
-              <div key={interview._id} className="bg-white rounded-lg shadow p-6">
+              <div key={interview._id} className="bg-black rounded-lg shadow p-6 border border-gray-700">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-3">
-                      <h3 className="text-lg font-semibold text-gray-900">
+                      <h3 className="text-lg font-semibold text-white">
                         {interview.title}
                       </h3>
                       <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(interview.status)}`}>
@@ -186,41 +186,41 @@ export default function ManageInterviews() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-                      <div className="flex items-center gap-2 text-gray-600">
+                      <div className="flex items-center gap-2 text-gray-400">
                         <User className="w-4 h-4" />
                         <span>{interview.applicantId?.name}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-600">
+                      <div className="flex items-center gap-2 text-gray-400">
                         <Mail className="w-4 h-4" />
                         <span>{interview.applicantId?.email}</span>
                       </div>
                       {interview.applicantId?.phone && (
-                        <div className="flex items-center gap-2 text-gray-600">
+                        <div className="flex items-center gap-2 text-gray-400">
                           <Phone className="w-4 h-4" />
                           <span>{interview.applicantId.phone}</span>
                         </div>
                       )}
-                      <div className="flex items-center gap-2 text-gray-600">
+                      <div className="flex items-center gap-2 text-gray-400">
                         <MapPin className="w-4 h-4" />
                         <span>{interview.jobId?.title}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-600">
+                      <div className="flex items-center gap-2 text-gray-400">
                         <Calendar className="w-4 h-4" />
                         <span>{date}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-600">
+                      <div className="flex items-center gap-2 text-gray-400">
                         <Clock className="w-4 h-4" />
                         <span>{time} ({interview.duration} min)</span>
                       </div>
                     </div>
 
                     {interview.description && (
-                      <p className="text-gray-600 mb-3">{interview.description}</p>
+                      <p className="text-gray-400 mb-3">{interview.description}</p>
                     )}
 
                     {interview.notes && (
-                      <div className="bg-yellow-50 border border-yellow-200 rounded p-3 mb-3">
-                        <p className="text-sm text-yellow-800">
+                      <div className="bg-yellow-900/20 border border-yellow-700 rounded p-3 mb-3">
+                        <p className="text-sm text-yellow-300">
                           <strong>Notes:</strong> {interview.notes}
                         </p>
                       </div>
@@ -234,7 +234,7 @@ export default function ManageInterviews() {
                           href={interview.zoomJoinUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition-colors"
+                          className="flex items-center gap-2 bg-blue-700 text-white px-3 py-2 rounded text-sm hover:bg-blue-800 transition-colors"
                         >
                           <Video className="w-4 h-4" />
                           Join Meeting
@@ -244,7 +244,7 @@ export default function ManageInterviews() {
                         {!interview.reminderSent && (
                           <button
                             onClick={() => sendReminder(interview._id)}
-                            className="flex items-center gap-2 bg-green-600 text-white px-3 py-2 rounded text-sm hover:bg-green-700 transition-colors"
+                            className="flex items-center gap-2 bg-green-700 text-white px-3 py-2 rounded text-sm hover:bg-green-800 transition-colors"
                           >
                             <Send className="w-4 h-4" />
                             Send Reminder
@@ -253,7 +253,7 @@ export default function ManageInterviews() {
                         
                         <button
                           onClick={() => cancelInterview(interview._id)}
-                          className="flex items-center gap-2 bg-red-600 text-white px-3 py-2 rounded text-sm hover:bg-red-700 transition-colors"
+                          className="flex items-center gap-2 bg-red-700 text-white px-3 py-2 rounded text-sm hover:bg-red-800 transition-colors"
                         >
                           <Trash2 className="w-4 h-4" />
                           Cancel
@@ -268,13 +268,13 @@ export default function ManageInterviews() {
                     )}
 
                     {interview.status === "COMPLETED" && (
-                      <span className="text-sm text-green-600 px-3 py-2">
+                      <span className="text-sm text-green-400 px-3 py-2">
                         ✓ Completed
                       </span>
                     )}
 
                     {interview.status === "CANCELLED" && (
-                      <span className="text-sm text-red-600 px-3 py-2">
+                      <span className="text-sm text-red-400 px-3 py-2">
                         ✗ Cancelled
                       </span>
                     )}
@@ -283,17 +283,17 @@ export default function ManageInterviews() {
 
                 {/* Zoom Meeting Info */}
                 {interview.zoomJoinUrl && interview.status === "SCHEDULED" && (
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="mt-4 pt-4 border-t border-gray-700">
+                    <div className="flex items-center gap-4 text-sm text-gray-400">
                       <span>Meeting ID: {interview.zoomMeetingId}</span>
                       {interview.zoomPassword && (
                         <span>Password: {interview.zoomPassword}</span>
                       )}
-                      <span className={`${interview.invitationSent ? 'text-green-600' : 'text-orange-600'}`}>
+                      <span className={`${interview.invitationSent ? 'text-green-400' : 'text-orange-400'}`}>
                         {interview.invitationSent ? '✓ Invitation sent' : '⚠ Invitation pending'}
                       </span>
                       {interview.reminderSent && (
-                        <span className="text-blue-600">✓ Reminder sent</span>
+                        <span className="text-blue-400">✓ Reminder sent</span>
                       )}
                     </div>
                   </div>
@@ -311,7 +311,7 @@ export default function ManageInterviews() {
             <button
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className="px-3 py-2 border rounded text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-3 py-2 border border-gray-700 rounded text-sm text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-900"
             >
               Previous
             </button>
@@ -322,8 +322,8 @@ export default function ManageInterviews() {
                 onClick={() => setCurrentPage(page)}
                 className={`px-3 py-2 border rounded text-sm ${
                   currentPage === page 
-                    ? 'bg-blue-600 text-white border-blue-600' 
-                    : 'hover:bg-gray-50'
+                    ? 'bg-red-700 text-white border-red-700' 
+                    : 'border-gray-700 text-gray-300 hover:bg-gray-900'
                 }`}
               >
                 {page}
@@ -333,7 +333,7 @@ export default function ManageInterviews() {
             <button
               onClick={() => setCurrentPage(prev => Math.min(prev + 1, pagination.pages))}
               disabled={currentPage === pagination.pages}
-              className="px-3 py-2 border rounded text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-3 py-2 border border-gray-700 rounded text-sm text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-900"
             >
               Next
             </button>

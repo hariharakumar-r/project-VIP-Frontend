@@ -124,52 +124,52 @@ export default function RequestPromotion() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6">Request Post Promotion</h2>
+      <h2 className="text-3xl font-bold mb-6 text-white">Request Post Promotion</h2>
 
       <div className="grid lg:grid-cols-2 gap-6">
         {/* Contact Information Panel */}
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+        <div className="bg-black p-6 rounded-lg shadow-lg border border-gray-700">
+          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-white">
             <User size={24} />
             Contact Information
           </h3>
           
           <div className="space-y-4">
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-              <User size={20} className="text-gray-600" />
+            <div className="flex items-center gap-3 p-3 bg-gray-900 rounded-lg border border-gray-700">
+              <User size={20} className="text-gray-400" />
               <div>
-                <p className="text-sm text-gray-600">Name</p>
-                <p className="font-medium">{userInfo.name || "Not provided"}</p>
+                <p className="text-sm text-gray-400">Name</p>
+                <p className="font-medium text-white">{userInfo.name || "Not provided"}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-              <Mail size={20} className="text-gray-600" />
+            <div className="flex items-center gap-3 p-3 bg-gray-900 rounded-lg border border-gray-700">
+              <Mail size={20} className="text-gray-400" />
               <div>
-                <p className="text-sm text-gray-600">Email</p>
-                <p className="font-medium">{userInfo.email || "Not provided"}</p>
+                <p className="text-sm text-gray-400">Email</p>
+                <p className="font-medium text-white">{userInfo.email || "Not provided"}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-              <Building2 size={20} className="text-gray-600" />
+            <div className="flex items-center gap-3 p-3 bg-gray-900 rounded-lg border border-gray-700">
+              <Building2 size={20} className="text-gray-400" />
               <div>
-                <p className="text-sm text-gray-600">Company</p>
-                <p className="font-medium">{userInfo.companyName || "Not provided"}</p>
+                <p className="text-sm text-gray-400">Company</p>
+                <p className="font-medium text-white">{userInfo.companyName || "Not provided"}</p>
               </div>
             </div>
 
             {/* Phone Number Section */}
-            <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="p-3 bg-red-900/20 rounded-lg border border-red-700">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <Phone size={20} className="text-blue-600" />
-                  <p className="text-sm text-blue-800 font-medium">Phone Number</p>
+                  <Phone size={20} className="text-red-400" />
+                  <p className="text-sm text-red-300 font-medium">Phone Number</p>
                 </div>
                 {!editingPhone && (
                   <button
                     onClick={() => setEditingPhone(true)}
-                    className="text-blue-600 hover:text-blue-800"
+                    className="text-red-400 hover:text-red-300"
                   >
                     <Edit2 size={16} />
                   </button>
@@ -182,13 +182,13 @@ export default function RequestPromotion() {
                     type="tel"
                     value={phoneInput}
                     onChange={(e) => setPhoneInput(e.target.value)}
-                    className="flex-1 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="flex-1 p-2 border border-gray-600 rounded bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-red-600"
                     placeholder="Enter your phone number"
                   />
                   <button
                     onClick={handleUpdatePhone}
                     disabled={updatingPhone}
-                    className="bg-blue-500 text-white px-3 py-2 rounded hover:bg-blue-600 disabled:opacity-50"
+                    className="bg-red-700 text-white px-3 py-2 rounded hover:bg-red-800 disabled:opacity-50"
                   >
                     {updatingPhone ? <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div> : <Save size={16} />}
                   </button>
@@ -197,15 +197,15 @@ export default function RequestPromotion() {
                       setEditingPhone(false);
                       setPhoneInput(userInfo.phone || "");
                     }}
-                    className="text-gray-500 hover:text-gray-700"
+                    className="text-gray-400 hover:text-gray-300"
                   >
                     <X size={16} />
                   </button>
                 </div>
               ) : (
-                <p className="font-medium text-blue-900">
+                <p className="font-medium text-red-300">
                   {userInfo.phone || (
-                    <span className="text-red-600">Phone number required for promotion requests</span>
+                    <span className="text-red-400">Phone number required for promotion requests</span>
                   )}
                 </p>
               )}
@@ -214,14 +214,14 @@ export default function RequestPromotion() {
         </div>
 
         {/* Promotion Request Form */}
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+        <div className="bg-black p-6 rounded-lg shadow-lg border border-gray-700">
+          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-white">
             <Star className="text-yellow-500" size={24} />
             Promotion Request
           </h3>
 
-          <div className="mb-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-            <p className="text-sm text-yellow-800">
+          <div className="mb-6 p-4 bg-yellow-900/20 rounded-lg border border-yellow-700">
+            <p className="text-sm text-yellow-300">
               <strong>Benefits of promotion:</strong> Featured placement, increased visibility, 
               priority in search results, and highlighted badge on your job post.
             </p>
@@ -229,13 +229,13 @@ export default function RequestPromotion() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Select Job Post to Promote *
               </label>
               <select 
                 value={selectedJob} 
                 onChange={(e) => handleJobSelection(e.target.value)} 
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                className="w-full p-3 border border-gray-600 rounded-lg bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent" 
                 required
               >
                 <option value="">Choose a job post...</option>
@@ -246,34 +246,34 @@ export default function RequestPromotion() {
                 ))}
               </select>
               {jobs.length === 0 && (
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-sm text-gray-400 mt-2">
                   No eligible job posts found. Only active, non-promoted posts can be promoted.
                 </p>
               )}
             </div>
 
             {selectedJobDetails && (
-              <div className="p-4 bg-gray-50 rounded-lg border">
-                <h4 className="font-semibold mb-2">Selected Job Details:</h4>
+              <div className="p-4 bg-gray-900 rounded-lg border border-gray-700">
+                <h4 className="font-semibold mb-2 text-white">Selected Job Details:</h4>
                 <div className="space-y-2 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Briefcase size={16} className="text-gray-600" />
+                  <div className="flex items-center gap-2 text-gray-300">
+                    <Briefcase size={16} className="text-gray-400" />
                     <span>{selectedJobDetails.title}</span>
                   </div>
                   {selectedJobDetails.location && (
-                    <div className="flex items-center gap-2">
-                      <MapPin size={16} className="text-gray-600" />
+                    <div className="flex items-center gap-2 text-gray-300">
+                      <MapPin size={16} className="text-gray-400" />
                       <span>{selectedJobDetails.location}</span>
                     </div>
                   )}
                   {selectedJobDetails.salary && (
-                    <div className="flex items-center gap-2">
-                      <DollarSign size={16} className="text-gray-600" />
+                    <div className="flex items-center gap-2 text-gray-300">
+                      <DollarSign size={16} className="text-gray-400" />
                       <span>{selectedJobDetails.salary}</span>
                     </div>
                   )}
-                  <div className="flex items-center gap-2">
-                    <Calendar size={16} className="text-gray-600" />
+                  <div className="flex items-center gap-2 text-gray-300">
+                    <Calendar size={16} className="text-gray-400" />
                     <span>Posted {new Date(selectedJobDetails.createdAt).toLocaleDateString()}</span>
                   </div>
                 </div>
@@ -281,13 +281,13 @@ export default function RequestPromotion() {
             )}
 
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Message (Optional)
               </label>
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 border border-gray-600 rounded-lg bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
                 rows={4}
                 placeholder="Why should this post be promoted? Highlight the job's importance, urgency, or special requirements..."
               />
@@ -296,14 +296,14 @@ export default function RequestPromotion() {
             <button 
               type="submit" 
               disabled={loading || !userInfo.phone || jobs.length === 0} 
-              className="w-full flex items-center justify-center gap-2 bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 bg-red-700 text-white px-6 py-3 rounded-lg hover:bg-red-800 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Send size={20} />
               {loading ? "Submitting..." : "Submit Promotion Request"}
             </button>
 
             {!userInfo.phone && (
-              <p className="text-sm text-red-600 text-center">
+              <p className="text-sm text-red-400 text-center">
                 Please add your phone number above before submitting a request.
               </p>
             )}
@@ -312,9 +312,9 @@ export default function RequestPromotion() {
       </div>
 
       {/* Information Section */}
-      <div className="mt-8 bg-blue-50 p-6 rounded-lg border border-blue-200">
-        <h3 className="text-lg font-semibold text-blue-900 mb-3">How Promotion Works</h3>
-        <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-800">
+      <div className="mt-8 bg-red-900/20 p-6 rounded-lg border border-red-700">
+        <h3 className="text-lg font-semibold text-red-300 mb-3">How Promotion Works</h3>
+        <div className="grid md:grid-cols-2 gap-4 text-sm text-red-300">
           <div>
             <h4 className="font-medium mb-2">✨ What you get:</h4>
             <ul className="space-y-1 ml-4">

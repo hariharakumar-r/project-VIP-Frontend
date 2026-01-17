@@ -85,17 +85,17 @@ export default function InterviewDetails() {
   const getStatusColor = (status) => {
     switch (status) {
       case "SCHEDULED":
-        return "bg-blue-100 text-blue-800";
+        return "bg-blue-900 text-blue-300";
       case "STARTED":
-        return "bg-green-100 text-green-800";
+        return "bg-green-900 text-green-300";
       case "COMPLETED":
-        return "bg-green-100 text-green-800";
+        return "bg-green-900 text-green-300";
       case "CANCELLED":
-        return "bg-red-100 text-red-800";
+        return "bg-red-900 text-red-300";
       case "NO_SHOW":
-        return "bg-orange-100 text-orange-800";
+        return "bg-orange-900 text-orange-300";
       default:
-        return "bg-gray-100 text-gray-800";
+        return "bg-gray-800 text-gray-300";
     }
   };
 
@@ -159,7 +159,7 @@ export default function InterviewDetails() {
       <div className="mb-6">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center gap-2 text-gray-400 hover:text-gray-300 mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
           Back
@@ -167,7 +167,7 @@ export default function InterviewDetails() {
         
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            <h1 className="text-2xl font-bold text-white mb-2">
               {interview.title}
             </h1>
             <div className="flex items-center gap-3">
@@ -184,8 +184,8 @@ export default function InterviewDetails() {
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Interview Details */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-lg font-semibold mb-4">Interview Details</h2>
+          <div className="bg-black rounded-lg shadow p-6 border border-gray-700">
+            <h2 className="text-lg font-semibold mb-4 text-white">Interview Details</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               <div className="flex items-center gap-3">
@@ -193,16 +193,16 @@ export default function InterviewDetails() {
                   <>
                     <User className="w-5 h-5 text-gray-400" />
                     <div>
-                      <div className="font-medium">{interview.applicantId?.name}</div>
-                      <div className="text-sm text-gray-500">{interview.applicantId?.email}</div>
+                      <div className="font-medium text-white">{interview.applicantId?.name}</div>
+                      <div className="text-sm text-gray-400">{interview.applicantId?.email}</div>
                     </div>
                   </>
                 ) : (
                   <>
                     <Building2 className="w-5 h-5 text-gray-400" />
                     <div>
-                      <div className="font-medium">{interview.companyId?.name}</div>
-                      <div className="text-sm text-gray-500">Company</div>
+                      <div className="font-medium text-white">{interview.companyId?.name}</div>
+                      <div className="text-sm text-gray-400">Company</div>
                     </div>
                   </>
                 )}
@@ -211,54 +211,54 @@ export default function InterviewDetails() {
               <div className="flex items-center gap-3">
                 <MapPin className="w-5 h-5 text-gray-400" />
                 <div>
-                  <div className="font-medium">{interview.jobId?.title}</div>
-                  <div className="text-sm text-gray-500">{interview.jobId?.location}</div>
+                  <div className="font-medium text-white">{interview.jobId?.title}</div>
+                  <div className="text-sm text-gray-400">{interview.jobId?.location}</div>
                 </div>
               </div>
               
               <div className="flex items-center gap-3">
                 <Calendar className="w-5 h-5 text-gray-400" />
                 <div>
-                  <div className="font-medium">{date}</div>
-                  <div className="text-sm text-gray-500">Interview Date</div>
+                  <div className="font-medium text-white">{date}</div>
+                  <div className="text-sm text-gray-400">Interview Date</div>
                 </div>
               </div>
               
               <div className="flex items-center gap-3">
                 <Clock className="w-5 h-5 text-gray-400" />
                 <div>
-                  <div className="font-medium">{time}</div>
-                  <div className="text-sm text-gray-500">{interview.duration} minutes</div>
+                  <div className="font-medium text-white">{time}</div>
+                  <div className="text-sm text-gray-400">{interview.duration} minutes</div>
                 </div>
               </div>
             </div>
 
             {interview.description && (
               <div className="mb-4">
-                <h3 className="font-medium text-gray-900 mb-2">Description</h3>
-                <p className="text-gray-600">{interview.description}</p>
+                <h3 className="font-medium text-white mb-2">Description</h3>
+                <p className="text-gray-300">{interview.description}</p>
               </div>
             )}
 
             {interview.notes && (
-              <div className="bg-yellow-50 border border-yellow-200 rounded p-4">
-                <h3 className="font-medium text-yellow-900 mb-2">Additional Notes</h3>
-                <p className="text-yellow-800">{interview.notes}</p>
+              <div className="bg-yellow-900/20 border border-yellow-700 rounded p-4">
+                <h3 className="font-medium text-yellow-300 mb-2">Additional Notes</h3>
+                <p className="text-yellow-200">{interview.notes}</p>
               </div>
             )}
           </div>
 
           {/* Zoom Meeting Section */}
           {interview.status === "SCHEDULED" && upcoming && (
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-lg font-semibold mb-4">Join Meeting</h2>
+            <div className="bg-black rounded-lg shadow p-6 border border-gray-700">
+              <h2 className="text-lg font-semibold mb-4 text-white">Join Meeting</h2>
               
               {showZoomSDK ? (
                 <div>
                   <div className="mb-4">
                     <button
                       onClick={() => setShowZoomSDK(false)}
-                      className="text-sm text-gray-600 hover:text-gray-900"
+                      className="text-sm text-gray-400 hover:text-gray-300"
                     >
                       ← Switch to external meeting
                     </button>
@@ -281,7 +281,7 @@ export default function InterviewDetails() {
                   <div className="mt-4 text-center">
                     <button
                       onClick={() => setShowZoomSDK(true)}
-                      className="text-sm text-blue-600 hover:text-blue-800"
+                      className="text-sm text-red-400 hover:text-red-300"
                       disabled={!canJoinMeeting()}
                     >
                       Or join using embedded meeting
@@ -291,8 +291,8 @@ export default function InterviewDetails() {
               )}
               
               {!canJoinMeeting() && (
-                <div className="mt-4 p-3 bg-orange-50 border border-orange-200 rounded">
-                  <p className="text-sm text-orange-800">
+                <div className="mt-4 p-3 bg-orange-900/20 border border-orange-700 rounded">
+                  <p className="text-sm text-orange-300">
                     Meeting will be available 15 minutes before the scheduled time.
                   </p>
                 </div>
@@ -302,9 +302,9 @@ export default function InterviewDetails() {
 
           {/* Past Meeting Info */}
           {(interview.status === "COMPLETED" || interview.status === "CANCELLED") && (
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-lg font-semibold mb-4">Meeting Summary</h2>
-              <div className="text-gray-600">
+            <div className="bg-black rounded-lg shadow p-6 border border-gray-700">
+              <h2 className="text-lg font-semibold mb-4 text-white">Meeting Summary</h2>
+              <div className="text-gray-300">
                 {interview.status === "COMPLETED" && (
                   <p>This interview was completed successfully.</p>
                 )}
@@ -314,9 +314,9 @@ export default function InterviewDetails() {
               </div>
               
               {interview.feedback && (
-                <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded">
-                  <h3 className="font-medium text-blue-900 mb-2">Feedback</h3>
-                  <p className="text-blue-800">{interview.feedback}</p>
+                <div className="mt-4 p-4 bg-blue-900/20 border border-blue-700 rounded">
+                  <h3 className="font-medium text-blue-300 mb-2">Feedback</h3>
+                  <p className="text-blue-200">{interview.feedback}</p>
                 </div>
               )}
             </div>
@@ -326,40 +326,40 @@ export default function InterviewDetails() {
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Meeting Info */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="font-semibold mb-4">Meeting Information</h3>
+          <div className="bg-black rounded-lg shadow p-6 border border-gray-700">
+            <h3 className="font-semibold mb-4 text-white">Meeting Information</h3>
             <div className="space-y-3 text-sm">
               <div>
-                <span className="text-gray-500">Meeting ID:</span>
-                <div className="font-mono">{interview.zoomMeetingId}</div>
+                <span className="text-gray-400">Meeting ID:</span>
+                <div className="font-mono text-gray-300">{interview.zoomMeetingId}</div>
               </div>
               {interview.zoomPassword && (
                 <div>
-                  <span className="text-gray-500">Password:</span>
-                  <div className="font-mono">{interview.zoomPassword}</div>
+                  <span className="text-gray-400">Password:</span>
+                  <div className="font-mono text-gray-300">{interview.zoomPassword}</div>
                 </div>
               )}
               <div>
-                <span className="text-gray-500">Duration:</span>
-                <div>{interview.duration} minutes</div>
+                <span className="text-gray-400">Duration:</span>
+                <div className="text-gray-300">{interview.duration} minutes</div>
               </div>
               <div>
-                <span className="text-gray-500">Timezone:</span>
-                <div>{interview.timezone}</div>
+                <span className="text-gray-400">Timezone:</span>
+                <div className="text-gray-300">{interview.timezone}</div>
               </div>
             </div>
           </div>
 
           {/* Quick Actions */}
           {interview.status === "SCHEDULED" && upcoming && (
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="font-semibold mb-4">Quick Actions</h3>
+            <div className="bg-black rounded-lg shadow p-6 border border-gray-700">
+              <h3 className="font-semibold mb-4 text-white">Quick Actions</h3>
               <div className="space-y-3">
                 <a
                   href={interview.zoomJoinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+                  className="flex items-center gap-2 w-full bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800 transition-colors"
                 >
                   <Video className="w-4 h-4" />
                   Join in New Window
@@ -371,7 +371,7 @@ export default function InterviewDetails() {
                     navigator.clipboard.writeText(interview.zoomJoinUrl);
                     alert("Meeting link copied to clipboard!");
                   }}
-                  className="w-full bg-gray-100 text-gray-700 px-4 py-2 rounded hover:bg-gray-200 transition-colors"
+                  className="w-full bg-gray-800 text-gray-300 px-4 py-2 rounded hover:bg-gray-700 transition-colors"
                 >
                   Copy Meeting Link
                 </button>
@@ -381,9 +381,9 @@ export default function InterviewDetails() {
 
           {/* Preparation Tips for Applicants */}
           {!isCompany && interview.status === "SCHEDULED" && upcoming && (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-              <h3 className="font-semibold text-green-900 mb-3">Preparation Tips</h3>
-              <ul className="text-sm text-green-800 space-y-2">
+            <div className="bg-green-900/20 border border-green-700 rounded-lg p-6">
+              <h3 className="font-semibold text-green-300 mb-3">Preparation Tips</h3>
+              <ul className="text-sm text-green-300 space-y-2">
                 <li>• Test your camera and microphone</li>
                 <li>• Ensure stable internet connection</li>
                 <li>• Find a quiet, well-lit space</li>

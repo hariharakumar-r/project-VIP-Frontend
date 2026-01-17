@@ -33,10 +33,31 @@ export const AuthProvider = ({ children }) => {
       if (role === "COMPANY") endpoint = "/api/company/profile";
       else if (role === "SUPER_ADMIN") endpoint = "/api/admin/profile";
       
+      console.log(`Fetching profile for role: ${role} from endpoint: ${endpoint}`);
       const res = await api.get(endpoint);
+      console.log("Profile fetch successful:", res.data);
+      
+      // Ensure we have valid user data
+      if (!res.data) {
+        throw new Error("No profile data received");
+      }
+      
       setUser({ ...res.data, role });
-    } catch {
-      logout();
+    } catch (error) {
+      console.error("Profile fetch failed:", error);
+      console.error("Error response:", error.response?.data);
+      console.error("Error status:", error.response?.status);
+      
+      // Only logout on authentication errors, not on missing profile data
+      if (error.response?.status === 401 || error.response?.status === 403) {
+        console.log("Authentication error - logging out");
+        logout();
+      } else {
+        console.log("Profile error but keeping user logged in");
+        // Set a basic user object with just the role so the app doesn't break
+        const role = localStorage.getItem("role");
+        setUser({ role, name: "User", email: "user@example.com" });
+      }
     } finally {
       setLoading(false);
     }

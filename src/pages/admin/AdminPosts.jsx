@@ -31,33 +31,33 @@ export default function AdminPosts() {
     }
   };
 
-  if (loading) return <div className="text-center py-8">Loading posts...</div>;
+  if (loading) return <div className="text-center py-8 text-gray-300">Loading posts...</div>;
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6">My Job Posts</h2>
+      <h2 className="text-2xl font-bold mb-6 text-white">My Job Posts</h2>
       <div className="grid gap-4">
         {jobs.map((job) => (
-          <div key={job._id} className="bg-white p-6 rounded-lg shadow">
+          <div key={job._id} className="bg-black p-6 rounded-lg shadow-lg border border-gray-700">
             <div className="flex justify-between items-start">
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-xl font-semibold">{job.title}</h3>
-                  {job.isPromoted && <Star className="text-yellow-500 fill-yellow-500" size={18} />}
+                  <h3 className="text-xl font-semibold text-white">{job.title}</h3>
+                  {job.isPromoted && <Star className="text-yellow-400 fill-yellow-400" size={18} />}
                 </div>
-                <div className="flex gap-4 mt-2 text-sm text-gray-500">
+                <div className="flex gap-4 mt-2 text-sm text-gray-400">
                   {job.location && <span className="flex items-center gap-1"><MapPin size={16} />{job.location}</span>}
                   {job.salary && <span className="flex items-center gap-1"><DollarSign size={16} />{job.salary}</span>}
                 </div>
               </div>
-              <button onClick={() => deleteJob(job._id)} className="text-red-500 hover:text-red-700">
+              <button onClick={() => deleteJob(job._id)} className="text-red-400 hover:text-red-300">
                 <Trash2 size={20} />
               </button>
             </div>
-            <p className="mt-4 text-gray-700">{job.description}</p>
+            <p className="mt-4 text-gray-300">{job.description}</p>
           </div>
         ))}
-        {jobs.length === 0 && <p className="text-gray-500 text-center py-8">No job posts yet</p>}
+        {jobs.length === 0 && <p className="text-gray-400 text-center py-8">No job posts yet</p>}
       </div>
     </div>
   );

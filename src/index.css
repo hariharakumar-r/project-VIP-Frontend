@@ -3,6 +3,32 @@
 /* Import validation styles */
 @import "./styles/validation.css";
 
+/* Global gradient background */
+html, body, #root {
+  background: linear-gradient(to right, #1F1C18, #8E0E00);
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure text is white by default */
+* {
+  color: inherit;
+}
+
+/* Override default link colors */
+a {
+  color: #ffffff;
+}
+
+a:hover {
+  color: #f0f0f0;
+}
+
 /* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

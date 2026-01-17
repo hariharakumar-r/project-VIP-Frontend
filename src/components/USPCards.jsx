@@ -1,27 +1,24 @@
-import React, { useState } from "react";
-import { Menu, X, FileText, Video, Brain, Shield } from "lucide-react";
+import { FileText, Video, Brain } from "lucide-react";
 
 export default function WhyChooseUsPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen text-white">
       {/* Why Choose Us Section */}
-      <section className="min-h-screen py-20 px-4">
+      <section className="min-h-screen py-12 md:py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-black mb-6 text-black">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-4xl md:text-6xl font-black mb-4 md:mb-6 text-white drop-shadow-lg">
               Why Choose Project VIP?
             </h2>
-            <p className="text-xl text-gray-600">What Sets Us Apart</p>
+            <p className="text-lg md:text-xl text-gray-300">What Sets Us Apart</p>
           </div>
 
-          {/* Four Main Features */}
-          <div className="grid md:grid-cols-4 gap-8 mb-16">
+          {/* Four Main Features - Square Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             <FeatureCard
               icon={<FileText size={40} />}
               title="AI Resume Builder"
-              description="Our intelligent system analyzes job descriptions and crafts ATS-optimized resumes that highlight your strengths exactly how recruiters want to see them. Watch your callback rate skyrocket."
+              description="Our intelligent system analyzes job descriptions and crafts ATS-optimized resumes that highlight your strengths exactly how recruiters want to see them."
               highlights={[
                 "ATS-Optimized",
                 "Auto-Tailoring",
@@ -69,15 +66,15 @@ export default function WhyChooseUsPage() {
 
 function FeatureCard({ icon, title, description, highlights }) {
   return (
-    <div className="bg-gray-100 border-2 border-black rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300">
-      <div className="text-black mb-4">{icon}</div>
-      <h3 className="text-2xl font-bold text-black mb-4">{title}</h3>
-      <p className="text-gray-700 leading-relaxed mb-6">{description}</p>
-      <div className="flex flex-wrap gap-2">
+    <div className="bg-black border border-gray-700 rounded-lg p-6 md:p-8 hover:border-red-700 transition-all duration-300 shadow-lg flex flex-col h-full min-h-[500px] md:min-h-[550px]">
+      <div className="text-red-600 mb-4 flex-shrink-0">{icon}</div>
+      <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4 line-clamp-2">{title}</h3>
+      <p className="text-gray-300 leading-relaxed mb-4 md:mb-6 flex-grow text-sm md:text-base">{description}</p>
+      <div className="flex flex-wrap gap-2 mt-auto">
         {highlights.map((highlight, idx) => (
           <span
             key={idx}
-            className="px-3 py-1 bg-white border border-black text-black rounded-full text-xs font-semibold"
+            className="px-2 md:px-3 py-1 bg-red-900 border border-red-700 text-red-300 rounded text-xs md:text-sm font-semibold hover:bg-red-800 transition-colors whitespace-nowrap"
           >
             {highlight}
           </span>
