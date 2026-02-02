@@ -83,6 +83,16 @@ export default function SuperAdminDashboard() {
         }
       });
       
+      // Check if we're in a deployed environment and provide demo data
+      const isDeployed = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+      
+      if (isDeployed && (err.response?.status === 401 || err.response?.status === 403 || err.code === 'ERR_NETWORK')) {
+        console.log("🎭 Using demo data for deployed environment");
+        setStats(getDemoStats());
+        setLoading(false);
+        return;
+      }
+      
       // Store error details for debugging
       setError({
         message: err.message,
@@ -96,6 +106,105 @@ export default function SuperAdminDashboard() {
       setLoading(false);
     }
   };
+
+  // Demo data for deployed environments
+  const getDemoStats = () => ({
+    totals: {
+      users: 1247,
+      applications: 3456,
+      activeJobPosts: 89,
+      jobPosts: 156,
+      interviews: 567
+    },
+    today: {
+      newUsers: 12,
+      newApplications: 45,
+      newJobPosts: 3,
+      scheduledInterviews: 8
+    },
+    thisWeek: {
+      newUsers: 89,
+      newApplications: 234,
+      newJobPosts: 15,
+      completedInterviews: 34
+    },
+    thisMonth: {
+      newUsers: 345,
+      newApplications: 1234,
+      newJobPosts: 67,
+      newInterviews: 156,
+      newRegistrations: 345
+    },
+    applications: {
+      applied: 1456,
+      shortlisted: 567,
+      rejected: 234,
+      hired: 89
+    },
+    interviews: {
+      scheduled: 45,
+      completed: 234,
+      cancelled: 12,
+      upcoming: 23
+    },
+    moderation: {
+      blockedUsers: 5,
+      blockedPosts: 3,
+      pendingPosts: 12,
+      rejectedPosts: 8,
+      pendingPromoRequests: 8,
+      approvedPromoRequests: 15,
+      rejectedPromoRequests: 3
+    },
+    jobs: {
+      total: 156,
+      active: 89,
+      promoted: 12,
+      fullTime: 95,
+      partTime: 61,
+      remote: 78,
+      onSite: 78
+    },
+    users: {
+      applicants: 1089,
+      companies: 145,
+      admins: 13,
+      verified: 1156,
+      unverified: 91
+    },
+    charts: {
+      monthlyData: [
+        { month: "Sep", users: 45, jobs: 12, applications: 234, interviews: 34 },
+        { month: "Oct", users: 67, jobs: 18, applications: 345, interviews: 45 },
+        { month: "Nov", users: 89, jobs: 23, applications: 456, interviews: 56 },
+        { month: "Dec", users: 123, jobs: 34, applications: 567, interviews: 67 },
+        { month: "Jan", users: 156, jobs: 45, applications: 678, interviews: 78 },
+        { month: "Feb", users: 189, jobs: 56, applications: 789, interviews: 89 }
+      ],
+      userDistribution: {
+        applicants: 1089,
+        companies: 145,
+        admins: 13
+      }
+    },
+    recentActivity: {
+      users: [
+        { name: "John Doe", email: "john@example.com", role: "APPLICANT", createdAt: new Date().toISOString() },
+        { name: "Jane Smith", email: "jane@company.com", role: "COMPANY", createdAt: new Date().toISOString() },
+        { name: "Bob Wilson", email: "bob@example.com", role: "APPLICANT", createdAt: new Date().toISOString() }
+      ],
+      jobPosts: [
+        { title: "Frontend Developer", company: "Tech Corp", location: "Remote", createdAt: new Date().toISOString() },
+        { title: "Backend Engineer", company: "StartupXYZ", location: "San Francisco", createdAt: new Date().toISOString() },
+        { title: "Full Stack Developer", company: "WebCorp", location: "New York", createdAt: new Date().toISOString() }
+      ],
+      applications: [
+        { applicantName: "Alice Johnson", jobTitle: "React Developer", status: "APPLIED", createdAt: new Date().toISOString() },
+        { applicantName: "Mike Brown", jobTitle: "Node.js Developer", status: "SHORTLISTED", createdAt: new Date().toISOString() },
+        { applicantName: "Sarah Davis", jobTitle: "UI/UX Designer", status: "HIRED", createdAt: new Date().toISOString() }
+      ]
+    }
+  });
 
   if (loading) {
     return (
@@ -111,6 +220,18 @@ export default function SuperAdminDashboard() {
         <AlertTriangle className="h-16 w-16 text-red-400 mx-auto mb-4" />
         <p className="text-xl font-semibold text-red-400 mb-2">Failed to load dashboard statistics</p>
         <p className="text-gray-300 mb-4">Unable to fetch data from the server</p>
+        {error && (
+          <div className="bg-red-900/20 border border-red-500 rounded-lg p-4 mb-4 max-w-md mx-auto">
+            <p className="text-red-300 text-sm">
+              <strong>Error:</strong> {error.message}
+            </p>
+            {error.status && (
+              <p className="text-red-400 text-xs mt-1">
+                Status: {error.status} {error.statusText}
+              </p>
+            )}
+          </div>
+        )}
         <button 
           onClick={fetchDashboardStats}
           className="px-6 py-2 bg-red-700 text-white rounded-lg hover:bg-red-800"
@@ -120,6 +241,10 @@ export default function SuperAdminDashboard() {
       </div>
     );
   }
+
+  // Check if we're using demo data
+  const isDeployed = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+  const isDemoMode = isDeployed && stats.totals?.users === 1247; // Demo data marker
 
   // Chart configurations
   const monthlyActivityData = {
@@ -226,6 +351,19 @@ export default function SuperAdminDashboard() {
 
   return (
     <div className="space-y-6">
+      {/* Demo Mode Indicator */}
+      {isDemoMode && (
+        <div className="bg-blue-900/20 border border-blue-500 rounded-lg p-4 text-center">
+          <div className="flex items-center justify-center gap-2 text-blue-300">
+            <Activity size={20} />
+            <span className="font-semibold">Demo Mode Active</span>
+          </div>
+          <p className="text-blue-200 text-sm mt-1">
+            Showing sample data for demonstration purposes. Connect to backend for live data.
+          </p>
+        </div>
+      )}
+
       {/* Debug Info - Remove this after fixing */}
       <div className="bg-red-900 border border-red-700 rounded-lg p-4 text-sm text-red-200">
         <h4 className="font-semibold text-red-100">Debug Info:</h4>

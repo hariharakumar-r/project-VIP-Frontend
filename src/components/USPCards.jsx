@@ -1,20 +1,37 @@
-import { FileText, Video, Brain } from "lucide-react";
+import { FileText, Video, Brain, Map, Sparkles, CheckCircle, ArrowRight } from "lucide-react";
 
 export default function WhyChooseUsPage() {
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen text-white relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black"></div>
+      <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl animate-pulse"></div>
+      
       {/* Why Choose Us Section */}
-      <section className="min-h-screen py-12 md:py-20 px-4">
-        <div className="max-w-6xl mx-auto">
+      <section className="min-h-screen py-12 md:py-20 px-4 relative z-10">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10 md:mb-16">
+            <div className="mb-4 inline-block">
+              <div className="border border-purple-400/30 rounded-full px-6 py-2 bg-purple-400/10 backdrop-blur-sm">
+                <span className="text-sm font-bold text-purple-300 flex items-center gap-2">
+                  <Sparkles size={16} className="text-purple-400" />
+                  Our Unique Features
+                </span>
+              </div>
+            </div>
             <h2 className="text-4xl md:text-6xl font-black mb-4 md:mb-6 text-white drop-shadow-lg">
-              Why Choose Project VIP?
+              Why Choose{" "}
+              <span className="bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
+                Project VIP?
+              </span>
             </h2>
-            <p className="text-lg md:text-xl text-gray-300">What Sets Us Apart</p>
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+              Cutting-edge tools and personalized support to accelerate your career journey
+            </p>
           </div>
 
-          {/* Four Main Features - Square Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          {/* Four Main Features - Enhanced Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             <FeatureCard
               icon={<FileText size={40} />}
               title="AI Resume Builder"
@@ -24,6 +41,8 @@ export default function WhyChooseUsPage() {
                 "Auto-Tailoring",
                 "Format Excellence",
               ]}
+              color="from-blue-500 to-blue-600"
+              delay="0"
             />
 
             <FeatureCard
@@ -35,6 +54,8 @@ export default function WhyChooseUsPage() {
                 "Industry Experts",
                 "Recorded Sessions",
               ]}
+              color="from-green-500 to-green-600"
+              delay="100"
             />
 
             <FeatureCard
@@ -46,9 +67,12 @@ export default function WhyChooseUsPage() {
                 "Personalized Paths",
                 "Real-time Feedback",
               ]}
+              color="from-purple-500 to-purple-600"
+              delay="200"
             />
+            
             <FeatureCard
-              icon={<Brain size={40} />}
+              icon={<Map size={40} />}
               title="Career Roadmap"
               description="Get a personalized career roadmap based on your skills, interests, and goals. We'll help you navigate the job market with confidence."
               highlights={[
@@ -56,7 +80,25 @@ export default function WhyChooseUsPage() {
                 "Goal Setting",
                 "Progress Tracking",
               ]}
+              color="from-orange-500 to-orange-600"
+              delay="300"
             />
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="text-center mt-12 md:mt-16">
+            <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                Ready to Experience the Difference?
+              </h3>
+              <p className="text-gray-300 mb-6">
+                Join thousands of successful job seekers who transformed their careers with Project VIP
+              </p>
+              <button className="px-8 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg font-bold hover:from-red-700 hover:to-red-800 transition-all duration-300 flex items-center justify-center gap-2 mx-auto shadow-lg transform hover:scale-105">
+                Get Started Now
+                <ArrowRight size={20} />
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -64,20 +106,38 @@ export default function WhyChooseUsPage() {
   );
 }
 
-function FeatureCard({ icon, title, description, highlights }) {
+function FeatureCard({ icon, title, description, highlights, color, delay }) {
   return (
-    <div className="bg-black border border-gray-700 rounded-lg p-6 md:p-8 hover:border-red-700 transition-all duration-300 shadow-lg flex flex-col h-full min-h-[500px] md:min-h-[550px]">
-      <div className="text-red-600 mb-4 flex-shrink-0">{icon}</div>
-      <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4 line-clamp-2">{title}</h3>
-      <p className="text-gray-300 leading-relaxed mb-4 md:mb-6 flex-grow text-sm md:text-base">{description}</p>
-      <div className="flex flex-wrap gap-2 mt-auto">
+    <div 
+      className="group bg-black/60 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 hover:border-white/20 transition-all duration-500 shadow-lg flex flex-col h-full min-h-[500px] md:min-h-[550px] transform hover:scale-105 hover:shadow-2xl"
+      style={{ animationDelay: `${delay}ms` }}
+    >
+      {/* Icon */}
+      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-r ${color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
+        <div className="text-white">
+          {icon}
+        </div>
+      </div>
+      
+      {/* Title */}
+      <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-gray-100 transition-colors">
+        {title}
+      </h3>
+      
+      {/* Description */}
+      <p className="text-gray-300 leading-relaxed mb-6 flex-grow text-sm md:text-base group-hover:text-gray-200 transition-colors">
+        {description}
+      </p>
+      
+      {/* Highlights */}
+      <div className="space-y-2 mt-auto">
         {highlights.map((highlight, idx) => (
-          <span
-            key={idx}
-            className="px-2 md:px-3 py-1 bg-red-900 border border-red-700 text-red-300 rounded text-xs md:text-sm font-semibold hover:bg-red-800 transition-colors whitespace-nowrap"
-          >
-            {highlight}
-          </span>
+          <div key={idx} className="flex items-center gap-2 text-sm">
+            <CheckCircle size={16} className="text-green-400 flex-shrink-0" />
+            <span className="text-gray-300 group-hover:text-white transition-colors">
+              {highlight}
+            </span>
+          </div>
         ))}
       </div>
     </div>
